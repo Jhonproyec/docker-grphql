@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: Probar conexion
       run: |
-        ssh -q -o BatchMode=yes root@192.168.50.181
+        ssh -q -o BatchMode=yes root@138.117.140.158
     
 #       uses: actions/checkout@v4
 #       with:
