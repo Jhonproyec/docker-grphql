@@ -3,8 +3,8 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  # pull_request:
+#     branches: [ "main" ]
 
 jobs:
 
@@ -13,22 +13,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    - name: Docker login 
-      env: 
-        DOCKER_USER: ${{secrets.DOCKER_USER}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+    - name: Probar conexion
       run: |
-        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - name: Construir imagen Docker
-      run: |
-        docker build -t jonatancastillo/graphql:0.0.2 .
-    - name: Push docker image
-      run: |
-        docker push jonatancastillo/graphql:0.0.2
+        ssh -q -o BatchMode=yes root@192.168.50.181
+    
+#       uses: actions/checkout@v4
+#       with:
+#         fetch-depth: 0
+#     - name: Docker login 
+#       env: 
+#         DOCKER_USER: ${{secrets.DOCKER_USER}}
+#         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+#       run: |
+#         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+#     - name: Construir imagen Docker
+#       run: |
+#         docker build -t jonatancastillo/graphql:0.0.2 .
+#     - name: Push docker image
+#       run: |
+#         docker push jonatancastillo/graphql:0.0.2
       
         
     
